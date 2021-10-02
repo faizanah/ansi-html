@@ -3,7 +3,6 @@
 module.exports = ansiHTML
 const ansiRegex = require('ansi-regex')
 // Reference to https://github.com/sindresorhus/ansi-regex
-// var _regANSI = /(?:(?:\u001b\[)|\u009b)(?:(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?[A-M|f-m])|\u001b[A-M]/
 const _regANSI = ansiRegex({onlyFirst: true});
 
 var _defColors = {
@@ -60,7 +59,7 @@ function ansiHTML (text) {
   // Cache opened sequence.
   var ansiCodes = []
   // Replace with markup.
-  var ret = text.replace(/\033\[(\d+)m/g, function (match, seq) {
+  var ret = text.replace('', function (match, seq) {
     var ot = _openTags[seq]
     if (ot) {
       // If current sequence has been opened, close it.
